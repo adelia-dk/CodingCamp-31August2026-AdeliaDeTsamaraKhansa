@@ -1,0 +1,263 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Create project skeleton and tooling configuration": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542477907
+      },
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542489012
+      },
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542897112
+      }
+    ],
+    "2.1 Implement `StorageManager` in `utils/storage.js`": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542478090
+      },
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542901578
+      },
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788543036116
+      }
+    ],
+    "3.1 Implement `DOMHelpers` in `utils/dom.js`": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542478227
+      },
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542902239
+      },
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788543036710
+      }
+    ],
+    "4. Checkpoint — Verify shared utilities": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542478366
+      }
+    ],
+    "5.1 Implement pure formatting functions in `widgets/clock.js`": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542478440
+      },
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788543045950
+      }
+    ],
+    "5.4 Implement `ClockWidget.init(rootEl)` and `ClockWidget.destroy()` in `widgets/clock.js`": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542478506
+      }
+    ],
+    "6.1 Implement validation logic in `widgets/todo.js`": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542478572
+      },
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788543046732
+      }
+    ],
+    "6.4 Implement `TodoWidget` state and mutation functions": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542478642
+      }
+    ],
+    "6.8 Implement `TodoWidget.init(rootEl, storage)` rendering and event wiring": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542478710
+      }
+    ],
+    "7. Checkpoint — Verify ClockWidget and TodoWidget": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542478802
+      }
+    ],
+    "8.1 Implement `validateTimerDuration` and `formatCountdown` in `widgets/timer.js`": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542478907
+      },
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788543047101
+      }
+    ],
+    "8.4 Implement timer state machine and tick logic": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542478972
+      }
+    ],
+    "8.6 Implement `TimerWidget.init(rootEl, storage)` rendering and event wiring": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542479044
+      }
+    ],
+    "9.1 Implement `validateLink` in `widgets/links.js`": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542479108
+      },
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788543047650
+      }
+    ],
+    "9.3 Implement URL scheme normalisation in `widgets/links.js`": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542479176
+      },
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788543048294
+      }
+    ],
+    "9.5 Implement `addLink`, `deleteLink`, and `openLink` functions": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542479243
+      }
+    ],
+    "9.9 Implement `LinksWidget.init(rootEl, storage)` rendering and event wiring": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542479308
+      }
+    ],
+    "10. Checkpoint — Verify TimerWidget and LinksWidget": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542479389
+      }
+    ],
+    "11.1 Write CSS custom properties (design tokens) on `:root`": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542479473
+      }
+    ],
+    "11.2 Write base and reset styles": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542479593
+      }
+    ],
+    "11.3 Write desktop grid layout for `#dashboard`": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542479656
+      }
+    ],
+    "11.4 Write responsive mobile stack layout": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542479739
+      }
+    ],
+    "11.5 Write widget-specific component styles": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542479806
+      }
+    ],
+    "12.1 Write `app.js` entry-point wiring": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542479924
+      }
+    ],
+    "13.1 Add ARIA labels and roles to all interactive controls": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542480001
+      }
+    ],
+    "14. Final checkpoint — Full test suite and integration verification": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542480074
+      }
+    ],
+    "1. Scaffold project structure and configure test tooling": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788542897246
+      }
+    ],
+    "2. Implement `StorageManager` utility": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788543036186
+      }
+    ],
+    "3. Implement `DOMHelpers` utility": [
+      {
+        "executionId": "5fa0c1e9-7395-463e-91af-37be66d7c4eb",
+        "chatSessionId": "sess_3f7c71d5-09ff-46ac-a92e-f97d7a29688d",
+        "timestamp": 1788543036800
+      }
+    ]
+  }
+}
