@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To‑Do Life Dashboard</title>
+  <meta name="description" content="A compact dashboard with clock, to-do list, focus timer and quick links.">
+  <link rel="stylesheet" href="css/lib.css">
+  <!-- Add a favicon (optional) -->
+  <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <header>
+    <h1>To‑Do Life Dashboard</h1>
+    <p class="sr-only" aria-hidden="false">A compact dashboard of clock, tasks and focus tools.</p>
+  </header>
+
+  <main id="dashboard" role="main" aria-label="Dashboard">
+    <section id="widget-clock" aria-label="Clock">
+      <h2 class="visually-hidden">Clock</h2>
+      <div id="clock-display" aria-live="polite">--:--</div>
+    </section>
+
+    <section id="widget-todo" aria-label="To‑Do List">
+      <h2>To‑Do</h2>
+      <form id="todo-form" aria-label="Add to-do" action="javascript:void(0);">
+        <label for="todo-input" class="visually-hidden">New task</label>
+        <input id="todo-input" name="todo" type="text" placeholder="Add a task" required>
+        <button type="submit">Add</button>
+      </form>
+      <ul id="todo-list" aria-live="polite" aria-atomic="false">
+        <!-- tasks inserted here by JS -->
+      </ul>
+    </section>
+
+    <section id="widget-timer" aria-label="Focus Timer">
+      <h2>Focus Timer</h2>
+      <div id="timer-controls">
+        <button id="timer-start">Start</button>
+        <button id="timer-pause">Pause</button>
+        <button id="timer-resume">Resume</button>
+        <button id="timer-reset">Reset</button>
+      </div>
+    </section>
+
+    <section id="widget-links" aria-label="Quick Links">
+      <h2>Quick Links</h2>
+      <nav aria-label="Quick links">
+        <ul>
+          <li><a href="#" aria-disabled="true">Project board</a></li>
+          <li><a href="#" aria-disabled="true">Notes</a></li>
+        </ul>
+      </nav>
+    </section>
+  </main>
+
+  <noscript>
+    <div class="noscript-warning">
+      JavaScript is required for the dashboard to work. Please enable JavaScript.
+    </div>
+  </noscript>
+
+  <!-- Load your module script. Do NOT put inline import statements inside a script tag that has a src attribute. -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
