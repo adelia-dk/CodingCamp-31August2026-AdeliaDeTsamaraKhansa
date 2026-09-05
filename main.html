@@ -27,6 +27,7 @@
         <label for="todo-input" class="visually-hidden">New task</label>
         <input id="todo-input" name="todo" type="text" placeholder="Add a task" required>
         <button type="submit">Add</button>
+        <form id="todo-form" aria-label="Add to-do" action="javascript:void(0);">
       </form>
       <ul id="todo-list" aria-live="polite" aria-atomic="false">
         <!-- tasks inserted here by JS -->
@@ -35,10 +36,10 @@
 
     <section id="widget-timer" aria-label="Focus Timer">
       <h2>Focus Timer</h2>
-      <div id="timer-display" aria-live="polite">25:00</div>
       <div id="timer-controls">
         <button id="timer-start">Start</button>
         <button id="timer-pause">Pause</button>
+        <button id="timer-pause" disabled>Pause</button>
         <button id="timer-reset">Reset</button>
       </div>
     </section>
@@ -47,8 +48,8 @@
       <h2>Quick Links</h2>
       <nav aria-label="Quick links">
         <ul>
-          <li><a href="#">Project board</a></li>
-          <li><a href="#">Notes</a></li>
+          <li><a href="#" aria-disabled="true">Project board</a></li>
+          <li><a href="#" aria-disabled="true">Notes</a></li>
         </ul>
       </nav>
     </section>
