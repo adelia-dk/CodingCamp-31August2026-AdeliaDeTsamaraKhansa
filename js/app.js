@@ -1,3 +1,10 @@
+import { StorageManager } from './utils/storage.js';
+import { ClockWidget } from './widgets/clock.js';
+import { TodoWidget } from './widgets/todo.js';
+import { TimerWidget } from './widgets/timer.js';
+import { LinksWidget } from './widgets/links.js';
+
+//Then exports and code follow
 export const DOMHelpers = {
   /**
    * Creates and returns a DOM element with the given tag, attributes, and children.
@@ -12,7 +19,7 @@ export const DOMHelpers = {
   }
   const element = document.createElement(tag);
   //
-}
+    
     if (attrs) {
       for (const [key, value] of Object.entries(attrs)) {
         if (key === 'className') {
@@ -60,9 +67,8 @@ export const DOMHelpers = {
     console.error('showError: containerEl is required');
     return;
   }
-  // ... rest of code
-}
-    if (!errorEl) {
+  let errorEl = containerEl.querySelector('.error-msg');
+  if (!errorEl) {
       errorEl = document.createElement('p');
       errorEl.className = 'error-msg';
       errorEl.setAttribute('aria-live', 'polite');
@@ -254,11 +260,6 @@ export function validateTitle(title) {
 export const TodoWidget = {
 };
 
-import { StorageManager } from './utils/storage.js';
-import { ClockWidget } from './widgets/clock.js';
-import { TodoWidget } from './widgets/todo.js';
-import { TimerWidget } from './widgets/timer.js';
-import { LinksWidget } from './widgets/links.js';
 
 /**
  * Initialises all four dashboard widgets.
@@ -282,20 +283,23 @@ document.addEventListener('DOMContentLoaded', init);
 // This file intentionally keeps logic small: it wires a simple clock widget
 // and placeholder content for the other sections so the page is not blank.
 
+let initialized = false;
+
 document.addEventListener('DOMContentLoaded', () => {
+  if (initialized) return;
+  initialized = true;
+  
   const clockRoot = document.getElementById('widget-clock');
   const todoRoot = document.getElementById('widget-todo');
   const timerRoot = document.getElementById('widget-timer');
   const linksRoot = document.getElementById('widget-links');
 
-  // Clock: render nodes and update every second
+  // Clock render
   function renderClockOnce() {
     DOMHelpers.clearChildren(clockRoot);
-    const title = DOMHelpers.el('h2', null, 'Clock');
     const timeEl = DOMHelpers.el('div', { className: 'clock-time' }, '');
     const dayEl = DOMHelpers.el('div', { className: 'clock-day' }, '');
     const dateEl = DOMHelpers.el('div', { className: 'clock-date' }, '');
-    clockRoot.appendChild(title);
     clockRoot.appendChild(timeEl);
     clockRoot.appendChild(dayEl);
     clockRoot.appendChild(dateEl);
@@ -310,6 +314,14 @@ document.addEventListener('DOMContentLoaded', () => {
     tick();
     return setInterval(tick, 1000);
   }
+
+  const clockInterval = renderClockOnce();
+  renderTodoPlaceholder();
+  renderTimerPlaceholder();
+  renderLinksPlaceholder();
+  
+  clockRoot.dataset.intervalId = String(clockInterval);
+});
 
   // Todo placeholder
   function renderTodoPlaceholder() {
