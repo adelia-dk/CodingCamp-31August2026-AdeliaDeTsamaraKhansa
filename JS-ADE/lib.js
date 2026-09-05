@@ -7,8 +7,12 @@ export const DOMHelpers = {
    * @returns {HTMLElement}
    */
   el(tag, attrs = {}, ...children) {
-    const element = document.createElement(tag);
-
+  if (!tag || typeof tag !== 'string') {
+    throw new Error('tag must be a non-empty string');
+  }
+  const element = document.createElement(tag);
+  //
+}
     if (attrs) {
       for (const [key, value] of Object.entries(attrs)) {
         if (key === 'className') {
@@ -52,7 +56,12 @@ export const DOMHelpers = {
    * @param {string} msg - The error message text
    */
   showError(containerEl, msg) {
-    let errorEl = containerEl.querySelector('.error-msg');
+  if (!containerEl) {
+    console.error('showError: containerEl is required');
+    return;
+  }
+  // ... rest of code
+}
     if (!errorEl) {
       errorEl = document.createElement('p');
       errorEl.className = 'error-msg';
@@ -244,3 +253,27 @@ export function validateTitle(title) {
 
 export const TodoWidget = {
 };
+
+import { StorageManager } from './utils/storage.js';
+import { ClockWidget } from './widgets/clock.js';
+import { TodoWidget } from './widgets/todo.js';
+import { TimerWidget } from './widgets/timer.js';
+import { LinksWidget } from './widgets/links.js';
+
+/**
+ * Initialises all four dashboard widgets.
+ * Exported for testability (used in integration smoke tests).
+ */
+export function init() {
+  const clockRoot = document.getElementById('widget-clock');
+  const todoRoot = document.getElementById('widget-todo');
+  const timerRoot = document.getElementById('widget-timer');
+  const linksRoot = document.getElementById('widget-links');
+
+  ClockWidget.init(clockRoot);
+  TodoWidget.init(todoRoot, StorageManager);
+  TimerWidget.init(timerRoot, StorageManager);
+  LinksWidget.init(linksRoot, StorageManager);
+}
+
+document.addEventListener('DOMContentLoaded', init);
