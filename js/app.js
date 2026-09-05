@@ -1,10 +1,7 @@
-import { StorageManager } from './utils/storage.js';
-import { ClockWidget } from './widgets/clock.js';
-import { TodoWidget } from './widgets/todo.js';
-import { TimerWidget } from './widgets/timer.js';
-import { LinksWidget } from './widgets/links.js';
+// Minimal app bootstrap to make main.html renderable
+// This file intentionally keeps logic small: it wires a simple clock widget
+// and placeholder content for the other sections so the page is not blank.
 
-//Then exports and code follow
 export const DOMHelpers = {
   /**
    * Creates and returns a DOM element with the given tag, attributes, and children.
@@ -14,12 +11,11 @@ export const DOMHelpers = {
    * @returns {HTMLElement}
    */
   el(tag, attrs = {}, ...children) {
-  if (!tag || typeof tag !== 'string') {
-    throw new Error('tag must be a non-empty string');
-  }
-  const element = document.createElement(tag);
-  //
-    
+    if (!tag || typeof tag !== 'string') {
+      throw new Error('tag must be a non-empty string');
+    }
+    const element = document.createElement(tag);
+
     if (attrs) {
       for (const [key, value] of Object.entries(attrs)) {
         if (key === 'className') {
@@ -63,12 +59,12 @@ export const DOMHelpers = {
    * @param {string} msg - The error message text
    */
   showError(containerEl, msg) {
-  if (!containerEl) {
-    console.error('showError: containerEl is required');
-    return;
-  }
-  let errorEl = containerEl.querySelector('.error-msg');
-  if (!errorEl) {
+    if (!containerEl) {
+      console.error('showError: containerEl is required');
+      return;
+    }
+    let errorEl = containerEl.querySelector('.error-msg');
+    if (!errorEl) {
       errorEl = document.createElement('p');
       errorEl.className = 'error-msg';
       errorEl.setAttribute('aria-live', 'polite');
@@ -89,6 +85,7 @@ export const DOMHelpers = {
     }
   },
 };
+
 export const StorageManager = {
   /**
    * Returns true if localStorage is readable and writable.
@@ -187,8 +184,6 @@ export function formatDate(date) {
   return `${date.getDate()} ${monthNames[date.getMonth()]}`;
 }
 
-export const ClockWidget = {};
-
 /**
  * Validates a new link entry before adding it.
  * @param {string} label - The display label for the link
@@ -213,8 +208,6 @@ export function normaliseUrl(url) {
   return 'https://' + url;
 }
 
-export const LinksWidget = {};
-
 /**
  * Validates a custom timer duration value.
  * @param {*} value - The value to validate.
@@ -238,9 +231,6 @@ export function formatCountdown(seconds) {
   return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
 }
 
-export const TimerWidget = {
-};
-
 /**
  * Validates a todo item title.
  * @param {string} title - The raw title input from the user.
@@ -257,38 +247,12 @@ export function validateTitle(title) {
   return null;
 }
 
-export const TodoWidget = {
-};
-
-
-/**
- * Initialises all four dashboard widgets.
- * Exported for testability (used in integration smoke tests).
- */
-export function init() {
-  const clockRoot = document.getElementById('widget-clock');
-  const todoRoot = document.getElementById('widget-todo');
-  const timerRoot = document.getElementById('widget-timer');
-  const linksRoot = document.getElementById('widget-links');
-
-  ClockWidget.init(clockRoot);
-  TodoWidget.init(todoRoot, StorageManager);
-  TimerWidget.init(timerRoot, StorageManager);
-  LinksWidget.init(linksRoot, StorageManager);
-}
-
-document.addEventListener('DOMContentLoaded', init);
-
-// Minimal app bootstrap to make main.html renderable
-// This file intentionally keeps logic small: it wires a simple clock widget
-// and placeholder content for the other sections so the page is not blank.
-
 let initialized = false;
 
 document.addEventListener('DOMContentLoaded', () => {
   if (initialized) return;
   initialized = true;
-  
+
   const clockRoot = document.getElementById('widget-clock');
   const todoRoot = document.getElementById('widget-todo');
   const timerRoot = document.getElementById('widget-timer');
@@ -314,14 +278,6 @@ document.addEventListener('DOMContentLoaded', () => {
     tick();
     return setInterval(tick, 1000);
   }
-
-  const clockInterval = renderClockOnce();
-  renderTodoPlaceholder();
-  renderTimerPlaceholder();
-  renderLinksPlaceholder();
-  
-  clockRoot.dataset.intervalId = String(clockInterval);
-});
 
   // Todo placeholder
   function renderTodoPlaceholder() {
@@ -350,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
     linksRoot.appendChild(p);
   }
 
-  // Run renders
+  // Run all renders
   const clockInterval = renderClockOnce();
   renderTodoPlaceholder();
   renderTimerPlaceholder();
