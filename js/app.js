@@ -279,38 +279,255 @@ document.addEventListener('DOMContentLoaded', () => {
     return setInterval(tick, 1000);
   }
 
-  // Todo placeholder
-  function renderTodoPlaceholder() {
+  // Todo widget
+  function renderTodo() {
     DOMHelpers.clearChildren(todoRoot);
     const title = DOMHelpers.el('h2', null, 'To‑Do List');
-    const p = DOMHelpers.el('p', null, 'Todo widget not yet wired.');
+    const input = DOMHelpers.el('input', { 
+      type: 'text', 
+      placeholder: 'Add a new task...',
+      className: 'todo-input',
+      id: 'todo-input'
+    });
+    const addBtn = DOMHelpers.el('button', 
+      { className: 'todo-add-btn', onClick: () => addTodo(input.value, input) },
+      'Add'
+    );
+    const list = DOMHelpers.el('ul', { className: 'todo-list', id: 'todo-items' });
+    
     todoRoot.appendChild(title);
-    todoRoot.appendChild(p);
+    todoRoot.appendChild(input);
+    todoRoot.appendChild(addBtn);
+    todoRoot.appendChild(list);
+    
+    loadTodos();
   }
 
-  // Timer placeholder
-  function renderTimerPlaceholder() {
+  function addTodo(todoTitle, inputEl) {
+    const error = validateTitle(todoTitle);
+    if (error) {
+      DOMHelpers.showError(todoRoot, error);
+      return;
+    }
+    DOMHelpers.clearError(todoRoot);
+    
+    const todos = StorageManager.get('todos') || [];
+    todos.push({
+      id: Date.now(),
+      title: todoTitle.trim(),
+      completed: false
+    });
+    StorageManager.set('todos', todos);
+    inputEl.value = '';
+    loadTodos();
+  }
+
+  function removeTodo(id) {
+    const todos = StorageManager.get('todos') || [];
+    const filtered = todos.filter(t => t.id !== id);
+    StorageManager.set('todos', filtered);
+    loadTodos();
+  }
+
+  function toggleTodo(id) {
+    const todos = StorageManager.get('todos') || [];
+    const todo = todos.find(t => t.id === id);
+    if (todo) {
+      todo.completed = !todo.completed;
+      StorageManager.set('todos', todos);
+      loadTodos();
+    }
+  }
+
+  function loadTodos() {
+    const todos = StorageManager.get('todos') || [];
+    const list = document.getElementById('todo-items');
+    DOMHelpers.clearChildren(list);
+    
+    todos.forEach(todo => {
+      const li = DOMHelpers.el('li', { className: todo.completed ? 'completed' : '' });
+      const checkbox = DOMHelpers.el('input', {
+        type: 'checkbox',
+        checked: todo.completed ? 'checked' : '',
+        onChange: () => toggleTodo(todo.id)
+      });
+      const label = DOMHelpers.el('label', null, todo.title);
+      const deleteBtn = DOMHelpers.el('button', {
+        className: 'todo-delete-btn',
+        onClick: () => removeTodo(todo.id),
+        title: 'Delete task'
+      }, '✕');
+      
+      li.appendChild(checkbox);
+      li.appendChild(label);
+      li.appendChild(deleteBtn);
+      list.appendChild(li);
+    });
+  }
+
+  // Timer widget
+  function renderTimer() {
     DOMHelpers.clearChildren(timerRoot);
     const title = DOMHelpers.el('h2', null, 'Focus Timer');
-    const p = DOMHelpers.el('p', null, 'Timer widget not yet wired.');
+    const display = DOMHelpers.el('div', { className: 'timer-display', id: 'timer-display' }, '00:00');
+    const input = DOMHelpers.el('input', { 
+      type: 'number', 
+      placeholder: 'Minutes (1-60)',
+      className: 'timer-input',
+      id: 'timer-input',
+      min: '1',
+      max: '60'
+    });
+    const startBtn = DOMHelpers.el('button', 
+      { className: 'timer-btn', id: 'timer-start-btn', onClick: () => startTimer(parseInt(input.value)) },
+      'Start'
+    );
+    const stopBtn = DOMHelpers.el('button', 
+      { className: 'timer-btn', id: 'timer-stop-btn', onClick: () => stopTimer() },
+      'Stop'
+    );
+    
     timerRoot.appendChild(title);
-    timerRoot.appendChild(p);
+    timerRoot.appendChild(display);
+    timerRoot.appendChild(input);
+    timerRoot.appendChild(startBtn);
+    timerRoot.appendChild(stopBtn);
   }
 
-  // Links placeholder
-  function renderLinksPlaceholder() {
+  let timerInterval = null;
+
+  function startTimer(minutes) {
+    const error = validateTimerDuration(minutes);
+    if (error) {
+      DOMHelpers.showError(timerRoot, error);
+      return;
+    }
+    DOMHelpers.clearError(timerRoot);
+    
+    if (timerInterval) {
+      clearInterval(timerInterval);
+    }
+
+    let secondsRemaining = minutes * 60;
+    const display = document.getElementById('timer-display');
+    const startBtn = document.getElementById('timer-start-btn');
+    const input = document.getElementById('timer-input');
+
+    startBtn.disabled = true;
+    input.disabled = true;
+
+    function updateDisplay() {
+      display.textContent = formatCountdown(secondsRemaining);
+      if (secondsRemaining <= 0) {
+        clearInterval(timerInterval);
+        startBtn.disabled = false;
+        input.disabled = false;
+        alert('Timer finished!');
+      } else {
+        secondsRemaining--;
+      }
+    }
+
+    updateDisplay();
+    timerInterval = setInterval(updateDisplay, 1000);
+  }
+
+  function stopTimer() {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      document.getElementById('timer-display').textContent = '00:00';
+      document.getElementById('timer-start-btn').disabled = false;
+      document.getElementById('timer-input').disabled = false;
+    }
+  }
+
+  // Links widget
+  function renderLinks() {
     DOMHelpers.clearChildren(linksRoot);
     const title = DOMHelpers.el('h2', null, 'Quick Links');
-    const p = DOMHelpers.el('p', null, 'Links widget not yet wired.');
+    const labelInput = DOMHelpers.el('input', { 
+      placeholder: 'Link label',
+      className: 'link-label-input',
+      id: 'link-label-input'
+    });
+    const urlInput = DOMHelpers.el('input', { 
+      placeholder: 'URL',
+      className: 'link-url-input',
+      id: 'link-url-input'
+    });
+    const addBtn = DOMHelpers.el('button',
+      { className: 'link-add-btn', onClick: () => addLink(labelInput.value, urlInput.value, labelInput, urlInput) },
+      'Add Link'
+    );
+    const list = DOMHelpers.el('ul', { className: 'links-list', id: 'links-items' });
+    
     linksRoot.appendChild(title);
-    linksRoot.appendChild(p);
+    linksRoot.appendChild(labelInput);
+    linksRoot.appendChild(urlInput);
+    linksRoot.appendChild(addBtn);
+    linksRoot.appendChild(list);
+    
+    loadLinks();
+  }
+
+  function addLink(label, url, labelInputEl, urlInputEl) {
+    const links = StorageManager.get('links') || [];
+    const error = validateLink(label, url, links.length);
+    if (error) {
+      DOMHelpers.showError(linksRoot, error);
+      return;
+    }
+    DOMHelpers.clearError(linksRoot);
+    
+    const normalizedUrl = normaliseUrl(url);
+    links.push({
+      id: Date.now(),
+      label: label.trim(),
+      url: normalizedUrl
+    });
+    StorageManager.set('links', links);
+    labelInputEl.value = '';
+    urlInputEl.value = '';
+    loadLinks();
+  }
+
+  function removeLink(id) {
+    const links = StorageManager.get('links') || [];
+    const filtered = links.filter(l => l.id !== id);
+    StorageManager.set('links', filtered);
+    loadLinks();
+  }
+
+  function loadLinks() {
+    const links = StorageManager.get('links') || [];
+    const list = document.getElementById('links-items');
+    DOMHelpers.clearChildren(list);
+    
+    links.forEach(link => {
+      const li = DOMHelpers.el('li', null);
+      const anchor = DOMHelpers.el('a', { 
+        href: link.url, 
+        target: '_blank',
+        rel: 'noopener noreferrer'
+      }, link.label);
+      const deleteBtn = DOMHelpers.el('button', {
+        className: 'link-delete-btn',
+        onClick: () => removeLink(link.id),
+        title: 'Delete link'
+      }, '✕');
+      
+      li.appendChild(anchor);
+      li.appendChild(deleteBtn);
+      list.appendChild(li);
+    });
   }
 
   // Run all renders
   const clockInterval = renderClockOnce();
-  renderTodoPlaceholder();
-  renderTimerPlaceholder();
-  renderLinksPlaceholder();
+  renderTodo();
+  renderTimer();
+  renderLinks();
 
   // Keep interval id on the root for easy cleanup in tests / dev
   clockRoot.dataset.intervalId = String(clockInterval);
